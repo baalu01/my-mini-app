@@ -37,6 +37,6 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mini-fullstack-app:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/testrepo:v.01
           build-args: |
             NODE_ENV=production
