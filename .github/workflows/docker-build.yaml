@@ -1,0 +1,36 @@
+name: Build & Push Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build & Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mini-fullstack-app:latest
+          build-args: |
+            NODE_ENV=production
