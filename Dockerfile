@@ -6,7 +6,7 @@ COPY frontend/package.json frontend/yarn.lock ./
 RUN yarn install
 
 COPY frontend/ . 
-RUN yarn build
+RUN npm run build
 
 # Stage 2: Build Java backend (JAR)
 FROM gradle:8.4-jdk17 AS backend-builder
