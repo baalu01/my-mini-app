@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Important for git versioning
+          fetch-depth: 0  # Needed to tag and push properly
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -60,8 +60,11 @@ jobs:
           IFS='.' read -r MAJOR MINOR PATCH <<< "${CURRENT_VERSION/v/}"
           NEW_VERSION="v$MAJOR.$MINOR.$((PATCH+1))"
           echo $NEW_VERSION > VERSION.txt
+
           git config user.name 'baalu01'
           git config user.email 'bhargavlavu11@gmail.com'
+
           git add VERSION.txt
           git commit -m "Bump version to $NEW_VERSION"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          git tag $NEW_VERSION
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main --tags
