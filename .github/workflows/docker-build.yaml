@@ -60,8 +60,8 @@ jobs:
           IFS='.' read -r MAJOR MINOR PATCH <<< "${CURRENT_VERSION/v/}"
           NEW_VERSION="v$MAJOR.$MINOR.$((PATCH+1))"
           echo $NEW_VERSION > VERSION.txt
-          git config --global user.name 'baalu01'
-          git config --global user.email 'bhargavlavu11@gmail.com'
+          git config user.name 'baalu01'
+          git config user.email 'bhargavlavu11@gmail.com'
           git add VERSION.txt
           git commit -m "Bump version to $NEW_VERSION"
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
