@@ -1,4 +1,4 @@
-name: Mooxy Docker Image
+name: Mooxy Docker Image -1
 
 on:
   workflow_dispatch:
