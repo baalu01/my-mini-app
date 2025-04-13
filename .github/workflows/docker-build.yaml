@@ -1,4 +1,4 @@
-name: Build & Push Docker Image
+name: Mooxy Docker Image
 
 on:
   workflow_dispatch:
