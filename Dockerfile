@@ -28,3 +28,5 @@ COPY --from=frontend-builder /app/frontend/build ./static
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
+SKrr
